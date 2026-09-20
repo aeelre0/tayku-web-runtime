@@ -176,43 +176,81 @@ function list_packages(out) {...}
 function publish_package(package_path, registry_source) {...}
 ```
 
-# 3.3 Registry Contract 
+# 3.3 Registry Contract
 
-A source have to obey some rules for being a registry source. These rules provides the standardization and Tayku Web Client Registry Module uses this standardization while handle its functions. These standardizations and rules are specified at the below;
+A registry is a source from which the Tayku Web Client discovers and retrieves packages and modules.
 
-### 3.3.1 Registry Structure
+This section defines the contract between the Tayku Web Client and a registry. It defines the registry structure, package representation, developer publishing requirements, and package signing requirements.
 
-A registry MUST contain a registry manifest that named `manifest.json`.
+A registry MUST NOT be required to use Git or any particular storage, database, server, or directory structure.
 
-The registry manifest MUST define:
+## 3.3.1 Registry Manifest
 
-- registry name
-- registry version
-- available packages
-- available modules
+Every registry MUST provide a `manifest.json` file.
 
+The manifest MUST define:
+
+* registry name
+* registry version
+* available packages
+* available modules
+
+Example:
 ```json
 {
     "name": "tayku-web-frontend-registry",
     "version": "1.0.0",
-    "packages": [...],
-    "modules": [...]
+    "packages": [],
+    "modules": []
 }
 ```
 
-### 3.3.2 Package Retrieval
+The manifest is the authoritative index of the packages and modules provided by the registry.
 
-A registry MUST provide a retrieval mechanism for every package
-defined in its `manifest.json`.
+The Tayku Web Client MUST use the information provided by the manifest to discover packages and modules.
 
-The Tayku Client MUST be able to retrieve a package using the
-information provided by the registry.
+## 3.3.2 Registry Metadata
 
-Each package entry MUST provide a `source` field containing a URI
-from which the package can be retrieved.
+A registry MUST define a name and version.
 
-For example:
+A registry MAY provide additional metadata describing the registry or its operator.
 
+Such metadata can include:
+
+* display name
+* description
+* website
+* contact information
+
+Registry operator metadata is informational and MUST NOT be treated as proof of real-world identity.
+
+A registry operated by Tayku Web is an official Tayku registry.
+
+A registry operated by another party is an external registry.
+
+## 3.3.3 Registry Layout
+
+A registry MUST NOT be required to follow a particular directory structure.
+
+The registry MAY organize packages and modules in any layout.
+
+The manifest MUST provide sufficient information for the Tayku Web Client to locate each package or module.
+
+The Tayku Web Client MUST NOT construct package paths based on assumptions about the registry's internal layout.
+
+## 3.3.4 Package Entries
+
+Every package exposed by a registry MUST have an entry in the `packages` array of `manifest.json`.
+
+Each package entry MUST define:
+
+* package name
+* package version
+* package source
+
+The `source` field MUST contain a URI from which the package can be retrieved.
+
+Example:
 ```json
 {
     "name": "tayku-web-frontend-registry",
@@ -220,30 +258,29 @@ For example:
     "packages": [
         {
             "name": "hero",
+            "version": "1.0.0",
             "source": "https://example.com/packages/hero"
-        },
-        {
-            "name": "header",
-            "source": "https://example.com/packages/header"
         }
     ],
-    "modules": []
 }
 ```
 
-The URI MAY reference a local or remote resource, including a resource
-hosted by the registry itself.
+The source URI MAY point to a resource hosted by the registry or to another location.
 
-The registry implementation MUST NOT be required to use Git.
+The package MUST be retrievable from the specified source.
 
-### 3.3.3 Package Metadata
+## 3.3.5 Package Metadata
 
-Every package MUST contain a `tayku-package.json` file.
+Every Tayku package MUST contain a `tayku-package.json` file.
 
-The tayku-package.json file MUST define the package metadata required
-by the Tayku Client.
+The file MUST define:
 
-For example:
+* package name
+* package version
+* package type
+
+Example:
+
 ```json
 {
     "name": "hero",
@@ -252,62 +289,221 @@ For example:
 }
 ```
 
-### 3.3.4 Layout Independence
+The package metadata MAY contain additional package information such as:
 
-A registry MAY organize its packages and modules in any directory
-structure.
+* description
+* license
+* homepage
+* documentation
 
-The Tayku Client MUST NOT depend on a specific directory structure
-when retrieving a package or module.
+Publisher identity MUST NOT be required in `tayku-package.json`.
 
-The `manifest.json` MUST provide sufficient information for the Tayku
-Client to locate the requested package or module.
+The publisher's cryptographic identity is established by the package signature and the signing identity associated with that signature.
 
-### 3.3.5 Package Identity
+## 3.3.6 Package Identity and Version
 
-Every package and module MUST have a unique name within the registry.
+The package name and version defined in `tayku-package.json` MUST exactly match the corresponding values in `manifest.json`.
 
-The package or module name defined in `manifest.json` MUST match the
-name defined in its `tayku-package.json`.
+A registry MUST NOT expose two different packages with the same name and version.
 
-A registry MUST NOT contain multiple packages or modules with the same
-name and version.
+Different releases of the same package MUST use different version values.
 
-### 3.3.6 Package Versioning
+The package name and version together identify a specific package release within a registry.
 
-Every package and module MUST define a version.
+## 3.3.7 Manifest Consistency
 
-The version defined in `manifest.json` MUST match the version defined
-in its `tayku-package.json`.
+A registry MUST maintain consistency between its manifest and the packages it provides.
 
-The Tayku Client MUST be able to distinguish different versions of the
-same package or module.
+For every package listed in `manifest.json`:
 
-### 3.3.7 Manifest Consistency
+1. The `source` URI MUST resolve to the corresponding package.
+2. The package MUST be retrievable.
+3. The package name MUST match the manifest entry.
+4. The package version MUST match the manifest entry.
+5. The package metadata MUST be valid according to this specification.
 
-Every package and module listed in `manifest.json` MUST be retrievable
-from the source specified by its manifest entry.
+A registry MUST NOT advertise a package that does not satisfy these requirements.
 
-A registry MUST NOT list a package or module that cannot be retrieved.
+## 3.3.8 Developer Account
 
-The information provided by `manifest.json` MUST be consistent with the
-metadata provided by the corresponding package.
+A developer MUST have a Tayku Web Developer account to publish a package through the Tayku Web package ecosystem.
 
-### 3.3.8 Package Signing
+A developer account MUST NOT require a real-world identity.
 
-Every package and module MUST be signed by its developer before being
-published to a registry.
+A developer MAY use a pseudonymous identity.
 
-The registry MUST provide the signature together with the package.
+The developer account represents the developer namespace and its associated signing identities.
 
-The Tayku Client MUST verify the signature before installing the package
-or module.
+The developer account MAY contain informational profile data, including:
 
-A package or module with an invalid, missing, or unverifiable signature
-MUST NOT be considered secure by the Tayku Client (see [[verifier.architecture.md]]).
+* display name
+* description
+* website
+* contact information
 
-> [!Note] Publishing
-> Publishing is one way to distribute your packages; however, the registry may not allow it. This does not prevent it from being a registry source.
+This information is not used as the cryptographic identity of the developer.
+
+The cryptographic identity of a developer is established by its registered signing identities.
+
+## 3.3.9 Developer Signing Identity
+
+Tayku Web package signing uses Ed25519.
+
+A developer signing identity consists of:
+
+* a 32-byte secret seed
+* the corresponding Ed25519 public key
+
+The secret seed MUST remain under the control of the developer.
+
+Tayku Web MUST NOT store the secret seed on its servers.
+
+The Tayku Web Client MUST provide the following command to initialize a developer account and create a local signing identity:
+
+```text
+tayku-web init --developer-user
+```
+
+The command MUST create a 32-byte secret seed using a cryptographically secure random source.
+
+The secret seed MUST be stored locally under the developer's control.
+
+The default secret storage location is:
+
+```text
+tayku-web/config/secrets/.seed_<id>
+```
+
+The corresponding public key MUST be associated with the developer account.
+
+A developer MUST be able to create multiple signing identities under the same developer account.
+
+Signing identities MUST NOT be restricted to one identity per device.
+
+A developer MAY maintain multiple signing identities on the same device and MAY use different identities on different devices or automated environments.
+
+This allows a developer to separate signing identities for different devices, environments, projects, or security boundaries.
+
+The developer MUST be able to replace or revoke a signing identity without replacing the developer account itself.
+
+## 3.3.10 Package Initialization
+
+The Tayku Web Client MUST provide a command for creating a new Tayku package:
+
+```text
+tayku-web init --package
+```
+
+The command MUST initialize the package source tree and create the required initial package metadata.
+
+The resulting package MUST contain a valid `tayku-package.json`.
+
+The package MUST be ready for development and subsequent signing or publication.
+
+## 3.3.11 Package Signing
+
+A developer MUST be able to sign a package using:
+
+```text
+tayku-web sign --package
+```
+
+The command MUST sign the package using one of the developer's registered signing identities.
+
+The resulting signature MUST be associated with the signing identity used to sign the package.
+
+The exact signing procedure is defined by `verifier.architecture.md`.
+
+This registry contract does not define:
+
+* package hashing
+* package canonicalization
+* key derivation
+* signature encoding
+* signature file format
+* signature verification algorithms
+
+Those mechanisms belong to the verifier architecture.
+
+If any content covered by the package signature changes, the package MUST be signed again.
+
+## 3.3.12 Package Publication
+
+A developer MUST be able to publish a package using:
+
+```text
+tayku-web publish --package
+```
+
+Before publication, the Tayku Web Client MUST validate:
+
+* package structure
+* `tayku-package.json`
+* package name
+* package version
+* package type
+
+A package MAY be published without a signature.
+
+An unsigned package MUST be identified as unsigned and MUST NOT receive the cryptographic guarantees provided by package signing.
+
+A developer SHOULD sign a package before publication.
+
+A registry MUST preserve the content of a signed package.
+
+A registry MUST NOT modify the content covered by a package signature after publication.
+
+If a published package is modified, the modified package MUST be treated as a different package release and MUST receive a new signature.
+
+## 3.3.13 Package Verification
+
+The Tayku Web Client MUST verify the signature of a signed package before accepting the package as cryptographically valid.
+
+An invalid signature MUST cause signature verification to fail.
+
+A missing signature MUST be treated as an unsigned package.
+
+A valid signature establishes the cryptographic identity of the signing key and the integrity of the signed package content according to the verifier architecture.
+
+A valid signature MUST NOT, by itself, establish that the package is safe, useful, or trusted.
+
+The complete verification procedure is defined in:
+
+```text
+verifier.architecture.md
+```
+
+## 3.3.14 External Registries
+
+A registry MAY be operated independently of Tayku Web.
+
+An external registry claiming Tayku Web compatibility MUST implement the registry and package contracts defined in this specification.
+
+An external registry operator MUST NOT be required to disclose a real-world identity.
+
+The Tayku Web Client MUST distinguish between:
+
+* the registry operator
+* the package developer
+* the developer's signing identity
+
+A registry operator and a package developer are independent identities.
+
+A package MAY be hosted by one registry while being signed by a developer who does not operate that registry.
+
+A valid package signature establishes the cryptographic identity of the signer and the integrity of the signed package content. It does not establish that the registry itself is trusted by Tayku Web.
+
+## 3.3.15 Publishing and Registry Independence
+
+A registry is a package distribution source, not necessarily a package publishing service.
+
+A registry MUST expose packages according to this contract.
+
+A registry MAY implement its own publishing interface or accept packages through another mechanism.
+
+The absence of a publishing interface does not prevent a source from being a valid Tayku Web registry.
+
+The mechanism used to transfer a package into a registry is separate from the mechanism used by the Tayku Web Client to retrieve that package.
 
 ___ 
 
