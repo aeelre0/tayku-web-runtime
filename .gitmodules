@@ -1,0 +1,3 @@
+[submodule "lib/twr-libc"]
+	path = lib/twr-libc
+	url = git@github-tayku:aeelre0/twr-libc.git
