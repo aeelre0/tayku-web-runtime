@@ -1,47 +1,38 @@
-# Tayku Web CLI
+# Tayku Web
 
-This client is designed for distributing backend and frontend modules of Tayku Systems.
+A configuration-driven, module-based platform for building, configuring, and distributing web applications. 
 
 ___
 
-# 1. Scope 
-- **in-scope:**
-    - This client sets the environment for Tayku modules (just like the necessity folders etc...)
-    - This client provides a visual referance of Tayku modules
-    - This client provides the secure downloading system for Tayku modules 
+# 1. Introduction
 
-- **out-of-scope:**
-    - This client doesn't provide an interface for editing modules
-    - This client doesn't provide an interface for personalization of registry source.
-    - This client doesn't contains the modules inside, instead of fetch them from a source.
+This section provides some pre-informations about Tayku Web
+
+## 1.1 What is Tayku Web?
+
+Tayku Web is a development environment that highly config
+
+· · ·
+
+## 1.2 Why Tayku Web?
+
+
+
+· · ·
+
+## 1.3 How Does Tayku Web Works?
+
+
+
+· · ·
+
+
+## 1.4 Who is Tayku Web For?
+
+
+
 ___
 
-# 2. Dependencies 
-- `npm` : Single distribution source of Tayku CLI for now.
-- `node` : Default JavaScript runtime environment of Tayku CLI.
-
-> [!WARNING]
-> This dependencies are using for the Tayku CLI. This means that, whenever you want to add modules from Tayku Frontend or Tayku Backend, you have to be carefull about its dependencies also.
-
-___ 
-
-# 3. Testing and Verification Strategy
-- **Mocking Strategy:**
-    - Tayku CLI needs a project for setting up all environment. Therefore, our mocking strategy is creating a dummy project for tesing the properties of Tayku CLI.
-
-- **Test Scenerios:**
-    * [ ] Verify if Tayku CLI can read the modules lists of Tayku Modules from sources dynamically.
-    * [ ] Verify that the Tayku CLI can validate and compare the expected and actual signatures and hashes for security purposes.
-    * [ ] Verify if Tayku CLI can initialize a project. 
-    * [ ] Verify if Tayku CLI can feth the modules from sources.
-
-___ 
-
-# 4. TO-DO & Roadmap 
-* [ ] Create the folder structure of CLI.
-* [ ] Decide which files will be created later.
-* [ ] Finish up the architecture 
-* [ ] Test 
 
 ___
 
