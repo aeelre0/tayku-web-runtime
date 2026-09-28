@@ -1843,6 +1843,10 @@ ___
 
 # 74. Stable Syscall ABI
 
+A TWR App's syscall ABI is its stable programmatic interface:
+the set of functions exposed for direct use by other TWR
+applications, libraries, or runtime components.
+
 When TWR exposes a stable syscall ABI, that ABI MUST be append-only.
 
 Existing syscall interfaces MUST remain valid according to their established contracts.

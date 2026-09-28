@@ -558,9 +558,7 @@ ___
 Stable interfaces include, where applicable:
 
 * command ABI
-* library ABI
-* syscall ABI
-* public API
+* syscall ABI (This section may include public APIs and library APIs.)
 * explicit architecture contracts
 
 RULE IFACE-001:
