@@ -320,31 +320,31 @@ Implementation details MAY change without requiring consumers to change, provide
 
 TWR facilities SHOULD be preferred when an equivalent TWR facility exists because they provide a continuity path through the stable TWR interface.
 
-Underlying system facilities MAY still be used when appropriate.
+Underlying custom facilities MAY still be used when appropriate.
 
 Using an underlying Linux or system facility directly is not inherently forbidden.
 
-However, direct dependence on system-specific implementation facilities does not provide the same TWR continuity guarantee as using the corresponding TWR abstraction.
+However, direct dependence on system-specific implementation facilities and custom codes do not provide the same TWR continuity guarantee as using the corresponding TWR abstraction.
 
 ___
 
 # 7. TWR libc
 
-TWR MAY provide its own libc abstraction, including facilities such as `twr_malloc` and other TWR-specific interfaces.
+TWR MAY provide its own libc abstraction, including facilities such as `malloc` and other TWR-specific interfaces.
 
 The purpose of TWR libc is to provide a stable TWR-facing interface rather than to unnecessarily reproduce every system facility from the beginning.
 
-An initial TWR libc implementation MAY forward directly to the underlying system libc.
+An initial TWR libc implementation MAY forward directly to the implementation of `musl`.
 
 For example:
 
 ```c
 void *
-twr_malloc(
+malloc(
     size_t size
 )
 {
-    return malloc(size);
+    /* The implementation of musl */
 }
 ```
 
@@ -356,7 +356,9 @@ The implementation is replaceable.
 
 TWR code SHOULD use TWR-provided facilities when doing so provides a meaningful stable abstraction.
 
-Direct use of system facilities MAY remain valid where no TWR abstraction is appropriate or where the architecture explicitly permits it.
+Direct use of custom facilities MAY remain valid where no TWR abstraction is appropriate or where the architecture explicitly permits it.
+
+TWR provides a developing environment by the help of it's compiler. The build-system of this compiler, links the twr apps by twr-libc.
 
 ___
 
@@ -479,12 +481,7 @@ Example:
 
 ```c
 TWR_STATUS_CODE
-twr_foo_read(
-    foo_t *foo,
-    void *buffer,
-    size_t size,
-    size_t *read_size
-);
+twr_foo(const foo *out);
 ```
 
 A raw value such as:
@@ -2994,7 +2991,7 @@ ___
 
 ## 132.1 Initial Version
 
-- [ ] Finalize the initial `core-coding-rules.md` version.
+- [ ] Finalize the initial `core-coding-rules.dev.md` version.
 - [ ] Review the rules against all current TWR architecture documents.
 - [ ] Review the rules against existing TWR source code.
 - [ ] Verify consistency with the TWR documentation rules.
@@ -3016,9 +3013,9 @@ ___
 # 134. Notes
 
 > [!Note] AI Usage
-> This document has been transcribed by an AI in accordance with the rules in the `documentation-guide-rules-ai.md` file, based on the developer's architectural decisions.
+> This document has been transcribed by an AI in accordance with the rules in the `documentation-guide-rules-ai.dev.md` file, based on the developer's architectural decisions.
 
 > [!Note] AI Specific File 
-> `tayku-ai-design-principles.md` file was designed for AI agents by using this file.
+> `ai-design-principles.md` file was designed for AI agents by using this file.
 
 ___ 

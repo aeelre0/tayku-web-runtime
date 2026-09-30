@@ -78,9 +78,9 @@ This section describes how AI agents should be used during the development proce
 
 * **Use Special AI Context Files:** We highly recommend defining special files for AI agents because of the way LLMs work. You can basically define three files:
 
-  * `ai-goals.md`: Defines the goals of the project.
-  * `ai-memory-bank.md`: Covers what has been done so far in the project and the decisions that have been made.
-  * `ai-design-principles.md`: Includes the design principles that AI agents have to follow.
+  * `ai-goals.dev.md`: Defines the goals of the project.
+  * `ai-memory-bank.dev.md`: Covers what has been done so far in the project and the decisions that have been made.
+  * `ai-design-principles.dev.md`: Includes the design principles that AI agents have to follow.
 
 * **Provide Enough Context:** Always provide enough information about the project and the task. AI agents work better when the problem space is clearly defined. Include the related source files, documentation, requirements, constraints, and previous decisions when necessary.
 
@@ -141,11 +141,11 @@ The developer is always responsible for the final result. AI is a development to
 
 Tayku Web Runtime Environment provides some templates for developers who want to use AI agents efficiently during their development processes. These utilities are listed below:
 
-* `tayku-ai-goals.md`: This file provides a template that covers the goals of your project. You can copy and paste this file into your project directory and make it usable by editing it according to your project.
+* `ai-goals.dev.md`: This file provides a template that covers the goals of your project. You can copy and paste this file into your project directory and make it usable by editing it according to your project.
 
-* `tayku-ai-memory-bank.md`: This file contains a template for recording the development of your project step by step. This file is important for AI because, while you know the history of your project, AI does not.
+* `ai-memory-bank.dev.md`: This file contains a template for recording the development of your project step by step. This file is important for AI because, while you know the history of your project, AI does not.
 
-* `tayku-ai-design-principles.md`: This file includes the development principles that AI agents have to follow. You can add restrictions and other rules according to your project, although we created this file based on the default principles of the Tayku Web Runtime Development Philosophy.
+* `ai-design-principles.dev.md`: This file includes the development principles that AI agents have to follow. You can add restrictions and other rules according to your project, although we created this file based on the default principles of the Tayku Web Runtime Development Philosophy.
 
 ---
 
@@ -185,9 +185,9 @@ Specifying AI usage is required, but the form of the notice is up to you. You do
 
 # 8. Related
 
-* `tayku-ai-goals.md`
-* `tayku-ai-memory-bank.md`
-* `tayku-ai-design-principles.md`
+* `ai-goals.dev.md`
+* `ai-memory-bank.dev.md`
+* `ai-design-principles.dev.md`
 * `documentation-guide-rules-ai.md`
 
 ---

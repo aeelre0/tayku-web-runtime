@@ -104,7 +104,7 @@ ___
 * 82. Concurrency Contracts
 * 83. errno
 * 84. System Calls
-* 85. Syscall ABI
+* 85. Public Function ABI
 * 86. Implementation Freedom
 * 87. Contract Over Mechanism
 * 88. Control Flow
@@ -581,7 +581,7 @@ ___
 # 15. TWR libc
 
 RULE LIBC-001:
-    TWR libc MAY initially forward functionality to the system libc.
+    Due to its origins, the TWR libc MAY initially utilize the functionality of `musl`.
 
 RULE LIBC-002:
     The TWR libc interface MUST remain a TWR-defined interface where specified.
@@ -1888,19 +1888,19 @@ RULE SYSCALL-004:
 
 ___
 
-# 85. Syscall ABI
+# 85. Public Function ABI
 
-RULE SYSCALLABI-001:
-    Stable syscall ABI MUST be append-only where specified.
+RULE PUBFUNCABI-001:
+    Stable public function ABI MUST be append-only where specified.
 
-RULE SYSCALLABI-002:
-    Existing syscall interfaces MUST remain compatible.
+RULE PUBFUNCABI-002:
+    Existing public function interfaces MUST remain compatible.
 
-RULE SYSCALLABI-003:
-    New syscall functionality SHOULD be additive.
+RULE PUBFUNCABI-003:
+    New public function functionality SHOULD be additive.
 
-RULE SYSCALLABI-004:
-    AI MUST NOT break existing syscall consumers implicitly.
+RULE PUBFUNCABI-004:
+    AI MUST NOT break existing public function ABI consumers implicitly.
 
 ___
 

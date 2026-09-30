@@ -1,6 +1,6 @@
 # Goals Documentation Guide
 
-This document defines how `tayku-ai-goals.md` MUST be documented, structured, maintained, and validated.
+This document defines how `ai-goals.md` MUST be documented, structured, maintained, and validated.
 
 ___
 
@@ -8,9 +8,9 @@ ___
 
 ## 1.1 Purpose
 
-This guide defines documentation rules for `tayku-ai-goals.md`.
+This guide defines documentation rules for `ai-goals.md`.
 
-`tayku-ai-goals.md` is the persistent AI-oriented project progress and goals document.
+`ai-goals.md` is the persistent AI-oriented project progress and goals document.
 
 This guide defines how the document represents:
 
@@ -50,7 +50,7 @@ Those subjects MUST be documented according to their authoritative sources.
 
 ## 1.3 Applicable Operations
 
-This guide applies when `tayku-ai-goals.md` is:
+This guide applies when `ai-goals.md` is:
 
 * Created.
 * Modified.
@@ -66,7 +66,7 @@ ___
 
 ## 2.1 Project Progress
 
-`tayku-ai-goals.md` SHOULD provide enough information for an AI to understand the known progress of the project.
+`ai-goals.md` SHOULD provide enough information for an AI to understand the known progress of the project.
 
 It SHOULD make it possible to identify:
 
@@ -600,7 +600,7 @@ ___
 
 ## 11.1 Project-State Authority
 
-`tayku-ai-goals.md` is persistent project-state context for AI systems.
+`ai-goals.md` is persistent project-state context for AI systems.
 
 It records project progress and planned work.
 
@@ -807,7 +807,7 @@ ___
 
 ## 15.1 Markup
 
-`tayku-ai-goals.md` MUST use Markdown.
+`ai-goals.md` MUST use Markdown.
 
 The document SHOULD use Markdown structures appropriate for:
 
@@ -929,7 +929,7 @@ ___
 
 ## 16.1 AI Responsibilities
 
-AI MAY create or modify `tayku-ai-goals.md`.
+AI MAY create or modify `ai-goals.md`.
 
 When doing so, AI MUST follow:
 
@@ -992,11 +992,11 @@ ___
 
 # 17. Related Resources
 
-The following resources MAY be relevant when creating, modifying, or validating `tayku-ai-goals.md`:
+The following resources MAY be relevant when creating, modifying, or validating `ai-goals.md`:
 
-* `tayku-ai-goals.md`.
-* `tayku-ai-memory-bank.md`.
-* `memory-bank-documentation-guide.md`.
+* `ai-goals.md`.
+* `ai-memory-bank.md`.
+* `memory-bank-documentation-guide.dev.md`.
 * TWR Documentation Ruleset.
 * TWR AI Coding Rules.
 * Usage of AI documentation.
@@ -1015,7 +1015,7 @@ ___
 
 ## 18.1 Documentation Compliance
 
-`tayku-ai-goals.md` MUST comply with the applicable TWR documentation requirements and this guide.
+`ai-goals.md` MUST comply with the applicable TWR documentation requirements and this guide.
 
 ° ° °
 

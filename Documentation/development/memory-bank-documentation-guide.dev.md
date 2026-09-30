@@ -57,13 +57,13 @@ ___
 
 # 2. Scope
 
-This document defines the documentation standards for `tayku-ai-memory-bank.md`.
+This document defines the documentation standards for `ai-memory-bank.md`.
 
 The rules in this document describe how a project memory bank SHOULD be structured, written, maintained, and reviewed.
 
 The memory bank is an AI-oriented project context file. This guide is intended for human developers who create and maintain memory banks.
 
-This document applies to memory banks used by projects within the Tayku Web Runtime Environment ecosystem when the memory bank follows the standard `tayku-ai-memory-bank.md` structure.
+This document applies to memory banks used by projects within the Tayku Web Runtime Environment ecosystem when the memory bank follows the standard `ai-memory-bank.md` structure.
 
 This document does NOT define project architecture, API contracts, ABI contracts, implementation requirements, or technical decisions.
 
@@ -71,7 +71,7 @@ ___
 
 # 3. Purpose
 
-The purpose of `tayku-ai-memory-bank.md` is to provide AI agents with persistent information about important project decisions.
+The purpose of `ai-memory-bank.md` is to provide AI agents with persistent information about important project decisions.
 
 A memory bank SHOULD allow an AI agent to determine:
 
@@ -778,7 +778,7 @@ ___
 
 # 18. Compliance
 
-A `tayku-ai-memory-bank.md` document complies with this guide when applicable requirements are satisfied.
+A `ai-memory-bank.md` document complies with this guide when applicable requirements are satisfied.
 
 The memory bank SHOULD:
 
@@ -803,12 +803,12 @@ ___
 
 # 19. Related Resources
 
-* `tayku-ai-memory-bank.md`
-* `tayku-ai-goals.md`
-* `memory-bank-documentation-guide.md`
-* `goals-documentation-guide.md`
-* `usage-of-ai.md`
-* `documentation-guides.md`
+* `ai-memory-bank.md`
+* `ai-goals.md`
+* `memory-bank-documentation-guide.dev.md`
+* `goals-documentation-guide.dev.md`
+* `usage-of-ai.dev.md`
+* `documentation-guides.dev.md`
 * `documentation-guide-rules-ai.md`
 
 ___

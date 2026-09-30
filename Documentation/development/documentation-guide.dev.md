@@ -236,7 +236,7 @@ This section addresses some questions users may have.
 
 ## 6.1 The Usage of AI While Writing Documentation
 
-We don't see AI as an enemy, so you can use AI agents for writing a document. The only rule is that AI has to obey the rules of document writing for the Tayku Web Runtime ecosystem. We provide a file named `documentation-guide-rules-ai.md` for AI agents (and you can see all of the rules formally due to the working principles of AI as well). You can add this file to your AI agent while writing your documentation.
+We don't see AI as an enemy, so you can use AI agents for writing a document. The only rule is that AI has to obey the rules of document writing for the Tayku Web Runtime ecosystem. We provide a file named `documentation-guide-rules-ai.dev.md` for AI agents (and you can see all of the rules formally due to the working principles of AI as well). You can add this file to your AI agent while writing your documentation.
 
 However, you have to control the result because AI may make mistakes about the architecture. You don't want your documentation to be misunderstood as a developer. If you want to use AI during the development process, just follow the related documents.
 
@@ -280,7 +280,7 @@ ___
 
 # 7. Related
 
-* `documentation-guide-rules-ai.md`
-* `usage-of-ai.md`
+* `documentation-guide-rules-ai.dev.md`
+* `usage-of-ai.dev.md`
 
 ___
