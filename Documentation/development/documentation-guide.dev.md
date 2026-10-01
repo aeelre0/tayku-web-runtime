@@ -226,6 +226,13 @@ If you are using a bullet list, don't forget that sub-bullet lists have to be in
 
 The standard indentation in the Tayku Web Runtime Ecosystem is four spaces. This applies to both programming and documentation.
 
+° ° °
+
+## 5.13 Document Title and Preface
+
+Every TWR document MUST begin with an unnumbered main header (`# Title`) specifying the name of the document.
+Directly beneath this header, a concise preface consisting of 1 to 2 short paragraphs MUST be provided to summ
+
 ---
 
 # 6. Some Questions
