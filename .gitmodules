@@ -1,3 +1,6 @@
 [submodule "lib/twr-libc"]
 	path = lib/twr-libc
 	url = https://github.com/aeelre0/twr-libc.git
+[submodule "utils/twr-tomlc99"]
+	path = utils/twr-tomlc99
+	url = git@github.com:aeelre0/tomlc99.git
